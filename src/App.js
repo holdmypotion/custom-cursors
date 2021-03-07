@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from "react";
+import "./App.css";
+import DotRing from "./components/DotRing/DotRing";
+import { MouseContext } from "./context/mouse-context";
 
 function App() {
+  const { cursorType, cursorChangeHandler } = useContext(MouseContext);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <DotRing />
+      <div className="container">
+        <div
+          onMouseEnter={() => cursorChangeHandler("hovered")}
+          onMouseLeave={() => cursorChangeHandler("")}
         >
-          Learn React
-        </a>
-      </header>
+          <h1>Hover over me</h1>
+        </div>
+      </div>
+      <div className="container" style={{ background: "peachpuff" }}></div>
     </div>
   );
 }
